@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Jeffrey Viewer - Video</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="/css/portfolio-item.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="/css/plyr.min.css">
+
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Jeffrey File Viewer</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/d">Return to 
+                <span id="return-link">Jeffrey Files</span>
+              </a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Portfolio Item Heading -->
+		<h1 class="my-4">Oceans
+			<small>From Jeffrey Files</small>
+		</h1>
+
+		<!-- Portfolio Item Row -->
+		<div class="row">
+
+			<div class="col-md-8">
+				<div class=""><!--TODO: Use bootstrap responsive embed-->
+					<video poster="/samplecontent/bluemoon/viewfromabluemoon.jpg" controls class="embed-responsive-item">
+						<source src="/samplecontent/bluemoon/viewfromabluemoon.mp4" type="video/mp4">
+						<source src="/samplecontent/bluemoon/viewfromabluemoon.webm" type="video/webm">
+						<!-- Captions -->
+						<track kind="captions" label="English" src="/samplecontent/bluemoon/viewfromabluemoon.en.vtt" srclang="en" default>
+						<!--<track kind="captions" label="Español" src="/samplecontent/bluemoon/viewfromabluemoon.es.vtt" srclang="es">-->
+					</video>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<h3 class="my-3">File Description</h3>
+				<p><b>No Description Found.</b></p>
+				<h3 class="my-3">File Details</h3>
+				<ul>
+					<li><b>Type</b>: Photo</li>
+
+				</ul>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark fixed-bottom">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Jeffrey Meng 2017</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/plyr.min.js"></script>
+    <script>
+    /* global plyr */
+        plyr.setup({
+        	iconUrl:"/svg/plyr.svg"
+        });
+    </script>
+</body>
+
+</html>
