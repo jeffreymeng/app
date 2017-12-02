@@ -16,6 +16,8 @@
 	<!-- Custom styles for this template -->
 	<link href="/css/portfolio-item.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="/css/plyr.min.css">
+
 </head>
 
 <body>
@@ -94,7 +96,13 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.bundle.min.js"></script>
-
+    <script src="/js/plyr.min.js"></script>
+    <script>
+    /* global plyr */
+        plyr.setup({
+        	iconUrl:"/svg/plyr.svg"
+        });
+    </script>
 </body>
 
 </html>
