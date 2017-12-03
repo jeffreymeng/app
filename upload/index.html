@@ -77,13 +77,16 @@
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script>
-        /* global $ */
-        $("#submit").click(function() {
+        /* global $ URL */
+        $("#file").on("change", function(){
             var fullPath = $("#file").val();
             var filename = fullPath.replace(/^.*[\\\/]/, '');
             console.log(filename);
             $("#file-label").html(filename);
-            var file = $("#file").val()[0];
+        });
+        $("#submit").click(function() {
+            
+            var file = $("#file").prop("files")[0];
             var type = file.type;
             var objurl = URL.createObjectURL(file);
             console.log(file);
