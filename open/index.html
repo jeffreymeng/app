@@ -1,0 +1,29 @@
+Loading...
+
+<script>
+    //http://stackoverflow.com/a/901144/5511561
+    function getQuery(name) {
+        var url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    if (getQuery("mode") == "local") {
+        if (getQuery("objectURL") == null && getQuery("objectURL") == "") {
+            window.location.href = "/invalidurl/?url=" + encodeURIComponent(window.location.href);
+        }
+        switch (getQuery("fileType")) {
+            case "video/mp4":
+            case "video/ogg":
+            case "video/webm":
+                window.location.href = "/video/?mode=local&type=" + getQuery("fileType") + "&objectURL=" + getQuery("objectURL");
+                break;
+            default:
+                //type not supported.
+        }
+    }
+</script>

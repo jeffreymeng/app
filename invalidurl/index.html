@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 
-<head lang="en">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Jeffrey Meng">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Jeffrey Viewer</title>
     <style>
         /* https://stackoverflow.com/a/3525675/5511561 */
@@ -55,12 +56,11 @@
 <body>
     <div class="container">
         <div class="col-lg-12">
-            <h1>Jeffrey Viewer</h1>
-            <p class="text-muted">A responsive, high definition, and lightning fast file viewer.</p>
+            <h1>Jeffrey Viewer - Invalid URL</h1>
+            <p class="text-muted">You were redirected to an Open URL with a malformed URL.</p>
             <hr>
-            <p>This website is primarily used to view files that span numerous Jeffrey Websites. When applicable, you will be redirected here from that website.</p>
-            <p>You can also use the Jeffrey Viewer to view your own files. Just provide a URL!</p>
-            <a href="/upload/" class="btn btn-block btn-outline-primary">View your own files</a>
+            <p>Please contact the developer of the application that sent you <span id="url">there</span> for more information.</p>
+            <a href="/">Return to main page></a>
 
 
 
@@ -75,7 +75,12 @@
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/viewer.js"></script>
-
+    <script>
+        
+        if (getQuery("url")) {
+            $("#url").html("to " + getQuery("url"))
+        }
+    </script>
 </body>
 
 </html>

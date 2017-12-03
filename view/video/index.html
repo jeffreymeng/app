@@ -17,6 +17,7 @@
 	<link href="/css/portfolio-item.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="/css/plyr.min.css">
+	<link rel="stylesheet" href="/css/viewer.css">
 
 </head>
 
@@ -54,7 +55,8 @@
 		<div class="row">
 
 			<div class="col-md-8">
-				<div class="inner"><!--TODO: Use bootstrap responsive embed-->
+				<div class="inner">
+					<!--TODO: Use bootstrap responsive embed-->
 					<video poster="/samplecontent/bluemoon/viewfromabluemoon.jpg" controls class="embed-responsive-item">
 						<source src="/samplecontent/bluemoon/viewfromabluemoon.mp4" type="video/mp4">
 						<source src="/samplecontent/bluemoon/viewfromabluemoon.webm" type="video/webm">
@@ -94,13 +96,24 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/plyr.min.js"></script>
-    <script>
-    /* global plyr */
-        plyr.setup({
-        	iconUrl:"/svg/plyr.svg"
-        });
-    </script>
+	<script src="/js/plyr.min.js"></script>
+    <script src="/js/viewer.js"></script>
+
+	<script>
+		/* global plyr */
+		var player = plyr.setup({
+			iconUrl: "/svg/plyr.svg"
+		})[0];
+		player.source({
+			type: 'video',
+			title: 'Example title',
+			sources: [{
+				src: '/path/to/movie.mp4',
+				type: 'video/mp4'
+			}]
+
+		});
+	</script>
 </body>
 
 </html>

@@ -9,6 +9,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <title>Jeffrey Viewer</title>
+
     <style>
         /* https://stackoverflow.com/a/3525675/5511561 */
 
@@ -48,6 +49,8 @@
             padding: 8px;
         }
     </style>
+    <link rel="stylesheet" href="/css/viewer.css">
+
 </head>
 
 <body>
@@ -76,22 +79,25 @@
     <script src="/js/jquery.min.js"></script>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/viewer.js"></script>
+
     <script>
         /* global $ URL */
-        $("#file").on("change", function(){
+        $("#file").on("change", function() {
             var fullPath = $("#file").val();
             var filename = fullPath.replace(/^.*[\\\/]/, '');
             console.log(filename);
             $("#file-label").html(filename);
         });
         $("#submit").click(function() {
-            
+
             var file = $("#file").prop("files")[0];
             var type = file.type;
             var objurl = URL.createObjectURL(file);
             console.log(file);
             console.log(type);
             console.log(objurl);
+            window.location.href = "/open/?mode=local&objectURL=" + encodeURIComponent(objurl) + "&fileType=" + encodeURIComponent(type) + "";
         });
     </script>
 </body>
