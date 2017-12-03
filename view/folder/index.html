@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Jeffrey Viewer - Folder</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="/css/portfolio-item.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="/css/lightbox.min.css">
+	<style>
+		/*https://bootsnipp.com/snippets/featured/bootstrap-30-treeview*/
+
+		.tree,
+		.tree ul {
+			margin: 0;
+			padding: 0;
+			list-style: none
+		}
+
+		.tree ul {
+			margin-left: 1em;
+			position: relative
+		}
+
+		.tree ul ul {
+			margin-left: .5em
+		}
+
+		.tree ul:before {
+			content: "";
+			display: block;
+			width: 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			border-left: 1px solid
+		}
+
+		.tree li {
+			margin: 0;
+			padding: 0 1em;
+			line-height: 2em;
+			color: #369;
+			font-weight: 700;
+			position: relative
+		}
+
+		.tree ul li:before {
+			content: "";
+			display: block;
+			width: 10px;
+			height: 0;
+			border-top: 1px solid;
+			margin-top: -1px;
+			position: absolute;
+			top: 1em;
+			left: 0
+		}
+
+		.tree ul li:last-child:before {
+			background: #fff;
+			height: auto;
+			top: 1em;
+			bottom: 0
+		}
+
+		.indicator {
+			margin-right: 5px;
+		}
+
+		.tree li a {
+			text-decoration: none;
+			color: #369;
+		}
+
+		.tree li button,
+		.tree li button:active,
+		.tree li button:focus {
+			text-decoration: none;
+			color: #369;
+			border: none;
+			background: transparent;
+			margin: 0px 0px 0px 0px;
+			padding: 0px 0px 0px 0px;
+			outline: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="/">Jeffrey File Viewer</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/d">Return to 
+                <span id="return-link">Jeffrey Files</span>
+              </a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<!-- Portfolio Item Heading -->
+		<h1 class="my-4">Folder
+			<small>From Jeffrey Files</small>
+		</h1>
+
+		<!-- Portfolio Item Row -->
+		<div class="row">
+
+			<div class="col-md-8">
+				<div class="inner">
+ <ul id="tree3">
+                <li><a href="/view/folder">JS</a>
+			
+                    <ul>
+                        <li>folder.min.js</li>
+                        <li>folder.js
+                         
+                    </ul>
+                </li>
+                <li><a href="/view/folder">CSS</a>
+                    <ul>
+                        <li>folder.min.css</li>
+                        <li>folder.css</li>
+                       
+                    </ul>
+                </li>
+                <li><a href="/view/folder">docs</a><ul>
+                	<li><a href="/view/code">index.html</a></li>
+                	<li><a href="/view/video">video.mp4</a></li>
+                	<li><a href="/view/audio">song.mp3</a></li>
+                	<li><a href="/view/photo">photo.jpg</a></li>
+                	<li><a href="/view/pdf">photo.pdf</a></li>
+                </ul></li>
+            </ul>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<h3 class="my-3">File Description</h3>
+				<p><b>No Description Found.</b></p>
+				<h3 class="my-3">File Details</h3>
+				<ul>
+					<li><b>Type</b>: Folder</li>
+
+				</ul>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
+
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<footer class="py-5 bg-dark fixed-bottom">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Jeffrey Meng 2017</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.bundle.min.js"></script>
+	<script src="/js/lightbox.min.js"></script>
+	<script>
+		//https://bootsnipp.com/snippets/featured/bootstrap-30-treeview
+		/* global $ */
+		$.fn.extend({
+			treed: function(o) {
+
+				var openedClass = 'glyphicon-minus-sign';
+				var closedClass = 'glyphicon-plus-sign';
+
+				if (typeof o != 'undefined') {
+					if (typeof o.openedClass != 'undefined') {
+						openedClass = o.openedClass;
+					}
+					if (typeof o.closedClass != 'undefined') {
+						closedClass = o.closedClass;
+					}
+				}
+
+				//initialize each of the top levels
+				var tree = $(this);
+				tree.addClass("tree");
+				tree.find('li').has("ul").each(function() {
+					var branch = $(this); //li with children ul
+					branch.prepend("<i class='indicator glyphicon " + closedClass + "'></i>");
+					branch.addClass('branch');
+					branch.on('click', function(e) {
+						if (this == e.target) {
+							var icon = $(this).children('i:first');
+							icon.toggleClass(openedClass + " " + closedClass);
+							$(this).children().children().toggle();
+						}
+					});
+					branch.children().children().toggle();
+				});
+				//fire event from the dynamically added icon
+				tree.find('.branch .indicator').each(function() {
+					$(this).on('click', function() {
+						$(this).closest('li').click();
+					});
+				});
+				//fire event to open branch if the li contains an anchor instead of text
+				tree.find('.branch>a').each(function() {
+					$(this).on('click', function(e) {
+						$(this).closest('li').click();
+						e.preventDefault();
+					});
+				});
+				//fire event to open branch if the li contains a button instead of text
+				tree.find('.branch>button').each(function() {
+					$(this).on('click', function(e) {
+						$(this).closest('li').click();
+						e.preventDefault();
+					});
+				});
+			}
+		});
+
+		//Initialization of treeviews
+
+		$('dfss').treed({ openedClass: 'far fa-angle-right', closedClass: 'far fa-angle-down' });
+	</script>
+</body>
+
+</html>
