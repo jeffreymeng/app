@@ -56,7 +56,12 @@
             <h1>Jeffrey Viewer - View your own files</h1>
             <hr>
             <p>Upload or provide a url to PDF's, word documents, videos, music and audio files, text files, markdown files, and <a href="#support">so much more</a>!</p>
-            <a href="/upload/"><button class="btn btn-outline-primary">View your own files</button></a>
+            <label class="custom-file">
+              <input type="file" id="file" class="custom-file-input">
+              <span class="custom-file-control" id="file-label"></span>
+            </label>
+            <a href="/upload/"><button class="btn btn-outline-primary">Submit</button></a>
+            <p class="text-muted">Files uploaded are kept local</p>
 
 
 
@@ -70,7 +75,14 @@
     <script src="/js/jquery.min.js"></script>
 
     <script src="/js/bootstrap.min.js"></script>
-
+    <script>
+        var fullPath = $("#exampleFile").val();
+        var filename = fullPath.replace(/^.*[\\\/]/, '');
+        console.log(filename);
+        $("#file-label").html(filename);
+        
+        
+    </script>
 </body>
 
 </html>
