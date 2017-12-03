@@ -56,11 +56,12 @@
             <h1>Jeffrey Viewer - View your own files</h1>
             <hr>
             <p>Upload or provide a url to PDF's, word documents, videos, music and audio files, text files, markdown files, and <a href="#support">so much more</a>!</p>
-            <label class="custom-file">
+            <label class="custom-file form-control">
               <input type="file" id="file" class="custom-file-input form-control">
               <span class="custom-file-control" id="file-label"></span>
             </label>
-            <a href="/upload/"><button class="btn btn-outline-primary btn-block">Submit</button></a>
+            <br>
+            <button class="btn btn-outline-primary btn-block" id="submit">Submit</button>
             <p class="text-muted">Files uploaded are kept local</p>
 
 
@@ -76,13 +77,19 @@
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script>
-    $("#file").on("change", function(){
-        var fullPath = $("#file").val();
-        var filename = fullPath.replace(/^.*[\\\/]/, '');
-        console.log(filename);
-        $("#file-label").html(filename);
-    });
-        
+        /* global $ */
+        $("#submit").click(function() {
+            var fullPath = $("#file").val();
+            var filename = fullPath.replace(/^.*[\\\/]/, '');
+            console.log(filename);
+            $("#file-label").html(filename);
+            var file = $("#file").val()[0];
+            var type = file.type;
+            var objurl = URL.createObjectURL(file);
+            console.log(file);
+            console.log(type);
+            console.log(objurl);
+        });
     </script>
 </body>
 
