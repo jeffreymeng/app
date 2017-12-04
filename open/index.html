@@ -20,7 +20,7 @@ Loading...
             case "video/mp4":
             case "video/ogg":
             case "video/webm":
-                window.location.href = "/video/?mode=local&type=" + encodeURIComponent(("fileType")) + "&objectURL=" + encodeURIComponent(("objectURL")) + "&name=" + encodeURIComponent(getQuery("filename"));
+                window.location.href = "/view/video/?mode=local&type=" + encodeURIComponent(("fileType")) + "&objectURL=" + encodeURIComponent(("objectURL")) + "&name=" + encodeURIComponent(getQuery("filename"));
                 break;
             default:
                 //type not supported.
