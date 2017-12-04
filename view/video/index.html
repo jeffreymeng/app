@@ -97,15 +97,16 @@
 
 	<script>
 		/* global plyr getQuery */
-		var player = plyr.setup($("#video-main"), {
-			iconUrl: "/svg/plyr.svg"
-		})[0];
+
 		var mode = getQuery("mode");
 		if (mode == "" || mode == null) {
 			//mode = "preview"
 		}
-		
+
 		if (mode == "preview") {
+			var player = plyr.setup($("#video-main"), {
+				iconUrl: "/svg/plyr.svg"
+			})[0];
 			player.source({
 				type: 'video',
 				title: 'View From a Blue Moon',
@@ -127,15 +128,18 @@
 					default: true
 				}]
 			});
-		} else if (mode == "local") {
+		}
+		else if (mode == "local") {
+			var player = plyr.setup($("#video-main"), {
+				iconUrl: "/svg/plyr.svg"
+			})[0];
 			player.source({
 				type: 'video',
 				title: getQuery("filename"),
 				sources: [{
-						src: getQuery("objectURL"),
-						type: getQuery("type")
-					}
-				]
+					src: getQuery("objectURL"),
+					type: getQuery("type")
+				}]
 			});
 		}
 	</script>
