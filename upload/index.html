@@ -98,7 +98,11 @@
             console.log(file);
             console.log(type);
             console.log(objurl);
-            /*window.location.href = */console.log("/open/?mode=local&objectURL=" + encodeURIComponent(objurl) + "&fileType=" + encodeURIComponent(type) + "&filename=" + encodeURIComponent(filename));
+            var reader = new FileReader();
+            var dataurl = reader.readAsDataURL(objurl);
+            console.log(dataurl)
+            /*window.location.href = */
+            console.log("/open/?mode=local&objectURL=" + encodeURIComponent(objurl) + "&fileType=" + encodeURIComponent(type) + "&filename=" + encodeURIComponent(filename));
         });
     </script>
 </body>
