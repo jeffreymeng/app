@@ -90,7 +90,8 @@
             $("#file-label").html(filename);
         });
         $("#submit").click(function() {
-
+            var fullPath = $("#file").val();
+            var filename = fullPath.replace(/^.*[\\\/]/, '');
             var file = $("#file").prop("files")[0];
             var type = file.type;
             var objurl = URL.createObjectURL(file);
