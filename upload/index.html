@@ -99,7 +99,7 @@
             console.log(type);
             console.log(objurl);
             var reader = new FileReader();
-            var dataurl = reader.readAsDataURL(objurl);
+            var dataurl = reader.readAsDataURL(file);
             console.log(dataurl)
             /*window.location.href = */
             console.log("/open/?mode=local&objectURL=" + encodeURIComponent(objurl) + "&fileType=" + encodeURIComponent(type) + "&filename=" + encodeURIComponent(filename));
