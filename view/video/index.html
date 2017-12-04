@@ -57,12 +57,8 @@
 			<div class="col-md-8">
 				<div class="inner">
 					<!--TODO: Use bootstrap responsive embed-->
-					<video poster="/samplecontent/bluemoon/viewfromabluemoon.jpg" controls class="embed-responsive-item">
-						<source src="/samplecontent/bluemoon/viewfromabluemoon.mp4" type="video/mp4">
-						<source src="/samplecontent/bluemoon/viewfromabluemoon.webm" type="video/webm">
-						<!-- Captions -->
-						<track kind="captions" label="English" src="/samplecontent/bluemoon/viewfromabluemoon.en.vtt" srclang="en" default>
-						<!--<track kind="captions" label="Español" src="/samplecontent/bluemoon/viewfromabluemoon.es.vtt" srclang="es">-->
+					<video id="video-main" controls class="embed-responsive-item hidden">
+						
 					</video>
 				</div>
 			</div>
@@ -97,22 +93,51 @@
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.bundle.min.js"></script>
 	<script src="/js/plyr.min.js"></script>
-    <script src="/js/viewer.js"></script>
+	<script src="/js/viewer.js"></script>
 
 	<script>
-		/* global plyr */
+		/* global plyr getQuery */
 		var player = plyr.setup({
 			iconUrl: "/svg/plyr.svg"
 		})[0];
-		player.source({
-			type: 'video',
-			title: 'Example title',
-			sources: [{
-				src: '/path/to/movie.mp4',
-				type: 'video/mp4'
-			}]
-
-		});
+		var mode = getQuery("mode");
+		if (mode == "" || mode == null) {
+			//mode = "preview"
+		}
+		
+		if (mode == "preview") {
+			player.source({
+				type: 'video',
+				title: 'View From a Blue Moon',
+				sources: [{
+						src: '/samplecontent/bluemoon/viewfromabluemoon.mp4',
+						type: 'video/mp4'
+					},
+					{
+						src: '/samplecontent/bluemoon/viewfromabluemoon.webm',
+						type: 'video/webm'
+					}
+				],
+				poster: '/samplecontent/bluemoon/viewfromabluemoon.jpg',
+				tracks: [{
+					kind: 'captions',
+					label: 'English',
+					srclang: 'en',
+					src: '/samplecontent/bluemoon/viewfromabluemoon.en.vtt',
+					default: true
+				}]
+			});
+		} else if (mode == "local") {
+			player.source({
+				type: 'video',
+				title: getQuery("filename"),
+				sources: [{
+						src: getQuery("objectURL"),
+						type: getQuery("type")
+					}
+				]
+			});
+		}
 	</script>
 </body>
 
