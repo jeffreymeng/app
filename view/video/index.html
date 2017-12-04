@@ -97,7 +97,7 @@
 
 	<script>
 		/* global plyr getQuery */
-		var player = plyr.setup({
+		var player = plyr.setup($("#video-main"), {
 			iconUrl: "/svg/plyr.svg"
 		})[0];
 		var mode = getQuery("mode");
