@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Jeffrey Meng">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/prism.css">
+    <link rel="stylesheet" type="text/css" href="/prism/prism.css">
     <title>Jeffrey Viewer - Docs</title>
     <style>
         /* https://stackoverflow.com/a/3525675/5511561 */
@@ -79,17 +79,17 @@
             <p>
                 
             </p>
-            <pre><code class="language-html" data-dependencies="less">
-                <h1>Hello World!</h1>
-                <script>
+            <pre><code class="language-markup" data-dependencies="less">
+                &lt;h1>Hello World!&lt;/h1>
+                &lt;script>
                     alert("hi");
                     var x = 1.59;
-                </script>
-                <style>
+                &lt;/script>
+                &lt;style>
                     .hi {
                         display:none;
                     }
-                </style>
+                &lt;/style>
             </code><pre>
 
 
@@ -103,7 +103,7 @@
     </div>
     <script src="/js/jquery.min.js"></script>
 
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.combined.min.js"></script>
     <script src="/prism/prism.js"></script>
     <script>
         Prism.plugins.autoloader.languages_path = '/prism/components/';
