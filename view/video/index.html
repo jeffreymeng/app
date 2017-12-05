@@ -60,6 +60,7 @@
 					<video id="video-main" controls class="embed-responsive-item hidden">
 						
 					</video>
+					<div id="video-external"></div>
 				</div>
 			</div>
 
@@ -141,6 +142,20 @@
 					type: getQuery("type")
 				}]
 			});
+		} else if (mode == "url") {
+			
+			var player = plyr.setup($("#video-main"), {
+				iconUrl: "/svg/plyr.svg"
+			})[0];
+			player.source({
+				type: 'video',
+				title: getQuery("filename"),
+				sources: [{
+					src: getQuery("url"),
+					type: getQuery("type")
+				}]
+			});
+			
 		}
 	</script>
 </body>

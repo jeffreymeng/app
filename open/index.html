@@ -25,5 +25,25 @@ Loading...
             default:
                 //type not supported.
         }
+    } else {//else if (mode == "url")
+    //no mode = url required
+        var path = "";
+        if (getQuery("url") == null && getQuery("url") == "") {
+            window.location.href = "/invalidurl/?url=" + encodeURIComponent(window.location.href);
+        }
+        switch (getQuery("fileType")) {
+            case "video/mp4":
+            case "video/ogg":
+            case "video/webm":
+                path = "/view/video/";
+                break;
+            default:
+                //type not supported.
+                
+        }
+        window.location.href =  path + window.location.search;/*"?mode=url&type=" + encodeURIComponent(getQuery("fileType")) +
+        "&url=" + encodeURIComponent(getQuery("objectURL")) + 
+        ((getQuery("filename") != null && getQuery("filename") != "") ? "&name=" + encodeURIComponent(getQuery("filename")) : "");
+        */
     }
 </script>
