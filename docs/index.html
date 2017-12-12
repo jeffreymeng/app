@@ -54,11 +54,14 @@
     <div class="container">
         <div class="col-lg-12">
             <h1>Jeffrey Viewer API - Docs</h1>
-            <p class="text-muted">Provides a simple yet good-looking API to view files</p>
+            <p class="text-muted">A powerful api to suit all your file viewer needs</p>
             <hr>
+            <p>v1.0.4</p>
             <h1>Contents</h1>
             <ul>
                 <li><a href="#intro">Introduction</a></li>
+                <li><a href="#intro">API Limit</a></li>
+                <li><a href="#intro">Getting Started</a></li>
                 <li><a href="#video">Video</a></li>
             </ul>
             <a name="intro"></a>
@@ -66,6 +69,19 @@
             <p>The Jeffrey Viewer API provides a simple URL-based file viewing experience. 
             It supports many formats and provides the user with a beautiful interface to view them.
             After viewing the file, the page will link back to your url.</p>
+            
+            <h2>Api Limit</h2>
+            <p>There is currently no API limit, though if you are going to use the API heavily, please contact us first - viewer<script>document.write("@");</script>
+            <noscript>[a  t ]</noscript>jeffkmeng.com.</p>
+            <h2>Getting Started</h2>
+            All file types utilize the same url, referred to as an <b>open URL</b>:
+            <div class="well">
+                <p>https://viewer.jeffkmeng.com/open</p>
+            </div>
+            The open URL(above) is the base of the path you will redirect to, regardless of parameters, but this is most likely not going to be the URL your users see.
+            All URL's have base and type-specific file parameters. Base file parameters apply to all file types, while type-specific parameters apply only to a certain data type.
+            There are required base and type-specific file parameters, as well as optional parameters for both.
+            
             <h2>Video</h2>
             <b>Supports:</b>
                 <ul>
@@ -77,20 +93,9 @@
             <b>Url Parameters:</b>
             <!-- table here support caption, backup video link, etc. -->
             <p>
-                use video type vyoutube for youtube files
+                use video type youtube for youtube files
             </p>
-            <pre><code class="language-markup" data-dependencies="c-like, js, css">
-                &lt;h1>Hello World!&lt;/h1>
-                &lt;script>
-                    alert("hi");
-                    var x = 1.59;
-                &lt;/script>
-                &lt;style>
-                    .hi {
-                        display:none;
-                    }
-                &lt;/style>
-            </code><pre>
+            
 
 
 
