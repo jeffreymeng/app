@@ -99,7 +99,7 @@
 	<script>
 		/* global plyr getQuery */
 
-		var mode = getQuery("mode");
+		var mode = getQuery("mode", atob(getQuery("d") || ''));
 		if (mode == "" || mode == null) {
 			//mode = "preview"
 		}
