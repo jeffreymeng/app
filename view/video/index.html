@@ -147,19 +147,19 @@
 			var player = plyr.setup($("#video-main"), {
 				iconUrl: "/svg/plyr.svg"
 			})[0];
-			if (getQuery("title", atob(getQuery("d")) || undefined) != "" && getQuery("title", atob(getQuery("d")) || undefined)) {
-				$("#title").text(getQuery("title", atob(getQuery("d")) || undefined));
+			if (getQuery("title", atob(getQuery("d") || '')) != "" && getQuery("title", atob(getQuery("d") || ''))) {
+				$("#title").text(getQuery("title", atob(getQuery("d") || '')));
 				
 			}
-			if (getQuery("location", atob(getQuery("d")) || undefined) != "" && getQuery("location", atob(getQuery("d")) || undefined)) {
-				$("#location").text(getQuery("location", atob(getQuery("d")) || undefined));
+			if (getQuery("location", atob(getQuery("d") || '')) != "" && getQuery("location", atob(getQuery("d") || ''))) {
+				$("#location").text(getQuery("location", atob(getQuery("d") || '')));
 			}
 			player.source({
 				type: 'video',
-				title: getQuery("filename", atob(getQuery("d")) || undefined),
+				title: getQuery("filename", atob(getQuery("d") || '')),
 				sources: [{
-					src: getQuery("url", atob(getQuery("d")) || undefined),
-					type: getQuery("type", atob(getQuery("d")) || undefined)
+					src: getQuery("url", atob(getQuery("d") || '')),
+					type: getQuery("type", atob(getQuery("d") || ''))
 				}]
 			});
 			
