@@ -32,7 +32,7 @@
         </button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active">
+					<li class="nav-item active" id="return">
 						<a class="nav-link" href="/d">Return to 
                 <span id="return-link">Jeffrey Files</span>
               </a>
@@ -47,8 +47,8 @@
 	<div class="container">
 
 		<!-- Portfolio Item Heading -->
-		<h1 class="my-4">View From a Blue Moon
-			<small>From Jeffrey Files</small>
+		<h1 class="my-4"><span id="title">View From a Blue Moon</span>
+			<small id="location">From Jeffrey Files</small>
 		</h1>
 
 		<!-- Portfolio Item Row -->
@@ -143,16 +143,23 @@
 				}]
 			});
 		} else if (mode == "url") {
-			
+			$("#return").addClass("hidden");
 			var player = plyr.setup($("#video-main"), {
 				iconUrl: "/svg/plyr.svg"
 			})[0];
+			if (getQuery("title", atob(getQuery("d")) || undefined) != "" && getQuery("title", atob(getQuery("d")) || undefined)) {
+				$("#title").text(getQuery("title", atob(getQuery("d")) || undefined));
+				
+			}
+			if (getQuery("location", atob(getQuery("d")) || undefined) != "" && getQuery("location", atob(getQuery("d")) || undefined)) {
+				$("#location").text(getQuery("location", atob(getQuery("d")) || undefined));
+			}
 			player.source({
 				type: 'video',
-				title: getQuery("filename"),
+				title: getQuery("filename", atob(getQuery("d")) || undefined),
 				sources: [{
-					src: getQuery("url"),
-					type: getQuery("type")
+					src: getQuery("url", atob(getQuery("d")) || undefined),
+					type: getQuery("type", atob(getQuery("d")) || undefined)
 				}]
 			});
 			
