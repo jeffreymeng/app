@@ -197,8 +197,7 @@
 			} else {
 				title = "Untitled Video"
 			}
-			console.log(player.getEmbed().getVideoData().title);
-			console.log(title);
+			
 			$("#title").text(title);
 			if (data.location) {
 				$("#location").text(data.location);
@@ -229,6 +228,8 @@
 					}]
 				});
 			}
+			console.log(player.getEmbed().getVideoData().title);
+			console.log(title);
 		}
 	</script>
 </body>
