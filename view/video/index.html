@@ -191,7 +191,7 @@
 			var loadTitleLater = false;
 			if (data.title) {
 				title = data.title;
-			} else if ((player.getEmbed().getVideoData().title && data.mode == "youtube") || (player.getEmbed().getVideoTitle() && data.mode == "viemo")) {
+			} else if (player.getEmbed().getVideoTitle() && data.mode == "viemo") {
 				loadTitleLater = true;
 				title = ""
 			} else {
@@ -214,11 +214,9 @@
 				}]
 			});
 			if (loadTitleLater) {
-				if (player.getEmbed().getVideoData().title && data.mode == "youtube") {
-					title = player.getEmbed().getVideoData().title;
-				} else {
+				
 					title = player.getEmbed().getVideoTitle();
-				}
+					$("#title").text(title);
 				player.source({
 					type: 'video',
 					title: title,
@@ -228,8 +226,7 @@
 					}]
 				});
 			}
-			console.log(player.getEmbed().getVideoData().title);
-			console.log(title);
+			
 		}
 	</script>
 </body>
