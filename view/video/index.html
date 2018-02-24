@@ -27,15 +27,16 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 		<div class="container">
 			<a class="navbar-brand" href="/">Jeffrey File Viewer</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+			 aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active" id="return">
-						<a class="nav-link" href="/d">Return to 
-                <span id="return-link">Jeffrey Files</span>
-              </a>
+						<a class="nav-link" href="/d">Return to
+							<span id="return-link">Jeffrey Files</span>
+						</a>
 					</li>
 
 				</ul>
@@ -47,8 +48,9 @@
 	<div class="container">
 
 		<!-- Portfolio Item Heading -->
-		<h1 class="my-4"><span id="title">View From a Blue Moon</span>
-			<small id="location">From Jeffrey Files</small>
+		<h1 class="my-4">
+			<span id="title">Loading...</span>
+			<small id="location"></small>
 		</h1>
 
 		<!-- Portfolio Item Row -->
@@ -58,7 +60,7 @@
 				<div class="inner">
 					<!--TODO: Use bootstrap responsive embed-->
 					<video id="video-main" controls class="embed-responsive-item hidden">
-						
+
 					</video>
 					<div id="video-external"></div>
 				</div>
@@ -66,10 +68,13 @@
 
 			<div class="col-md-4">
 				<h3 class="my-3">File Description</h3>
-				<p><b>No Description Found.</b></p>
+				<p>
+					<b>No Description Found.</b>
+				</p>
 				<h3 class="my-3">File Details</h3>
 				<ul>
-					<li><b>Type</b>: Video</li>
+					<li>
+						<b>Type</b>: Video</li>
 
 				</ul>
 			</div>
@@ -99,12 +104,28 @@
 	<script>
 		/* global plyr getQuery */
 
-		var mode = getQuery("mode", atob(getQuery("d") || ''));
-		if (mode == "" || mode == null) {
-			//mode = "preview"
+
+		var data;
+		if (getQuery("d")) {
+			data = JSON.parse(decodeURIComponent(getQuery("d")));
+		} else {
+			//if no data parameter is provided, we assume data is added in the form o a URL search parameter.
+			var search = location.search.substring(1);
+			data = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
 		}
 
-		if (mode == "preview") {
+		// loop through the object and change whitespace only/no charcter properties to undefined
+
+		for (var key in data) {
+			if (p.hasOwnProperty(key) && ((data[key].match(/^\s*$/g)) || data[key] == null)) {
+				delete data[key];//remove the element
+
+			}
+		}
+		if (data.mode == undefined) {
+			mode = "preview"
+		}
+		if (data.mode == "preview") {
 			var player = plyr.setup($("#video-main"), {
 				iconUrl: "/svg/plyr.svg"
 			})[0];
@@ -112,13 +133,13 @@
 				type: 'video',
 				title: 'View From a Blue Moon',
 				sources: [{
-						src: '/samplecontent/bluemoon/viewfromabluemoon.mp4',
-						type: 'video/mp4'
-					},
-					{
-						src: '/samplecontent/bluemoon/viewfromabluemoon.webm',
-						type: 'video/webm'
-					}
+					src: '/samplecontent/bluemoon/viewfromabluemoon.mp4',
+					type: 'video/mp4'
+				},
+				{
+					src: '/samplecontent/bluemoon/viewfromabluemoon.webm',
+					type: 'video/webm'
+				}
 				],
 				poster: '/samplecontent/bluemoon/viewfromabluemoon.jpg',
 				tracks: [{
@@ -130,39 +151,64 @@
 				}]
 			});
 		}
-		else if (mode == "local") {
+		else if (data.mode == "local") {
 			var player = plyr.setup($("#video-main"), {
 				iconUrl: "/svg/plyr.svg"
 			})[0];
 			player.source({
 				type: 'video',
-				title: getQuery("filename"),
+				title: data.filename,
 				sources: [{
-					src: getQuery("objectURL"),
-					type: getQuery("type")
+					src: data.objectURL,
+					type: data.type
 				}]
 			});
-		} else if (mode == "url") {
+		} else if (data.mode == "url") {
 			$("#return").addClass("hidden");
 			var player = plyr.setup($("#video-main"), {
 				iconUrl: "/svg/plyr.svg"
 			})[0];
-			if (getQuery("title", atob(getQuery("d") || '')) != "" && getQuery("title", atob(getQuery("d") || ''))) {
-				$("#title").text(getQuery("title", atob(getQuery("d") || '')));
-				
+			if (data.title) {
+				$("#title").text(data.title);
 			}
-			if (getQuery("location", atob(getQuery("d") || '')) != "" && getQuery("location", atob(getQuery("d") || ''))) {
-				$("#location").text(getQuery("location", atob(getQuery("d") || '')));
+			if (data.location) {
+				$("#location").text(data.location);
 			}
 			player.source({
 				type: 'video',
-				title: getQuery("filename", atob(getQuery("d") || '')),
+				title: data.filename,
 				sources: [{
-					src: getQuery("url", atob(getQuery("d") || '')),
-					type: getQuery("type", atob(getQuery("d") || ''))
+					src: data.url,
+					type: data.type
 				}]
 			});
+
+		} else if (data.mode == "youtube") {
+			var title;
+			if (data.title) {
+				title = data.title;
+			} else if (player.getEmbed().getVideoData().title) {
+				title = player.getEmbed().getVideoData().title;
+			} else {
+				title = "Untitled Video"
+			}
+			console.log(player.getEmbed().getVideoData().title);
+			console.log(title);
+			$("#title").text(title);
+			if (data.location) {
+				$("#location").text(data.location);
+			} else {
+				$("#location").text("From YouTube");
+			}
 			
+			player.source({
+				type: 'video',
+				title: title,
+				sources: [{
+					src: data.url,
+					type: "youtube"
+				}]
+			});
 		}
 	</script>
 </body>
