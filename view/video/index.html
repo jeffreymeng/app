@@ -203,7 +203,7 @@
 			if (data.location) {
 				$("#location").text(data.location);
 			} else {
-				$("#location").text("From YouTube");
+				$("#location").text("From " + (data.mode == "youtube"? "YouTube" : "Vimeo");
 			}
 
 			player.source({
