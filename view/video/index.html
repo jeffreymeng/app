@@ -184,13 +184,16 @@
 			});
 
 		} else if (data.mode == "youtube" || data.mode == "vimeo") {
+			var player = plyr.setup($("#video-main"), {
+				iconUrl: "/svg/plyr.svg"
+			})[0];
 			var title;
+			var loadTitleLater = false;
 			if (data.title) {
 				title = data.title;
-			} else if (player.getEmbed().getVideoData().title && data.mode == "youtube") {
-				title = player.getEmbed().getVideoData().title;
-			} else if (player.getEmbed().getVideoTitle() && data.mode == "viemo") {
-				title = player.getEmbed().getVideoTitle();
+			} else if ((player.getEmbed().getVideoData().title && data.mode == "youtube") || (player.getEmbed().getVideoTitle() && data.mode == "viemo")) {
+				loadTitleLater = true;
+				title = ""
 			} else {
 				title = "Untitled Video"
 			}
@@ -202,15 +205,30 @@
 			} else {
 				$("#location").text("From YouTube");
 			}
-			
+
 			player.source({
 				type: 'video',
 				title: title,
 				sources: [{
 					src: data.url,
-					type: data.mode
+					type: data.mode//youtube of vimeo
 				}]
 			});
+			if (loadTitleLater) {
+				if (player.getEmbed().getVideoData().title && data.mode == "youtube") {
+					title = player.getEmbed().getVideoData().title;
+				} else {
+					title = player.getEmbed().getVideoTitle();
+				}
+				player.source({
+					type: 'video',
+					title: title,
+					sources: [{
+						src: data.url,
+						type: data.mode//youtube of vimeo
+					}]
+				});
+			}
 		}
 	</script>
 </body>
