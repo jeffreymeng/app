@@ -90,7 +90,7 @@
 	<!-- Footer -->
 	<footer class="py-5 bg-dark fixed-bottom">
 		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Jeffrey Meng 2017</p>
+			<p class="m-0 text-center text-white">Copyright &copy; 2017-18 Jeffrey Meng</p>
 		</div>
 		<!-- /.container -->
 	</footer>
@@ -117,7 +117,7 @@
 		// loop through the object and change whitespace only/no charcter properties to undefined
 
 		for (var key in data) {
-			if (p.hasOwnProperty(key) && ((data[key].match(/^\s*$/g)) || data[key] == null)) {
+			if (data.hasOwnProperty(key) && ((data[key].match(/^\s*$/g)) || data[key] == null)) {
 				delete data[key];//remove the element
 
 			}
@@ -183,12 +183,14 @@
 				}]
 			});
 
-		} else if (data.mode == "youtube") {
+		} else if (data.mode == "youtube" || data.mode == "vimeo") {
 			var title;
 			if (data.title) {
 				title = data.title;
-			} else if (player.getEmbed().getVideoData().title) {
+			} else if (player.getEmbed().getVideoData().title && data.mode == "youtube") {
 				title = player.getEmbed().getVideoData().title;
+			} else if (player.getEmbed().getVideoTitle() && data.mode == "viemo") {
+				title = player.getEmbed().getVideoTitle();
 			} else {
 				title = "Untitled Video"
 			}
@@ -206,7 +208,7 @@
 				title: title,
 				sources: [{
 					src: data.url,
-					type: "youtube"
+					type: data.mode
 				}]
 			});
 		}
