@@ -107,7 +107,7 @@
 
 		var data;
 		if (getQuery("d")) {
-			data = JSON.parse(btoa(decodeURIComponent(getQuery("d"))));
+			data = JSON.parse(atob(decodeURIComponent(getQuery("d"))));
 		} else {
 			//if no data parameter is provided, we assume data is added in the form o a URL search parameter.
 			var search = location.search.substring(1);
@@ -123,7 +123,7 @@
 			}
 		}
 		if (data.mode == undefined) {
-			data.mode = "preview"
+			data.mode = "preview";
 		}
 		if (data.mode == "preview") {
 			var player = plyr.setup($("#video-main"), {
