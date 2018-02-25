@@ -56,47 +56,133 @@
             <h1>Jeffrey Viewer API - Docs</h1>
             <p class="text-muted">A powerful api to suit all your file viewer needs</p>
             <hr>
+            <b>TODO:</b>
+            <ul>
+                <li>
+                    Make it so there are automatic anchors next to headings. 
+                </li>
+            </ul>
             <p>v1.0.5</p>
             <h1>Contents</h1>
             <ul>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#intro">API Limit</a></li>
-                <li><a href="#intro">Getting Started</a></li>
-                <li><a href="#video">Video</a></li>
+                <li>
+                    <a href="#intro">Introduction</a>
+                </li>
+                <li>
+                    <a href="#intro">API Limit</a>
+                </li>
+                <li>
+                    <a href="#intro">Getting Started</a>
+                </li>
+                <li>
+                    <a href="#video">Video</a>
+                </li>
             </ul>
             <a name="intro"></a>
             <h1>Intro</h1>
-            <p>The Jeffrey Viewer API provides a simple URL-based file viewing experience. 
-            It supports many formats and provides the user with a beautiful interface to view them.
-            After viewing the file, the page will link back to your url.</p>
-            
+            <p>The Jeffrey Viewer API provides a simple URL-based file viewing experience. It supports many formats and provides
+                the user with a beautiful interface to view them. After viewing the file, the page will link back to your
+                url.
+            </p>
+
             <h2>Api Limit</h2>
-            <p>There is currently no API limit, though if you are going to use the API heavily, please contact us first - 
-                viewer<script>document.write("@");</script><noscript>[a  t ]</noscript>jeffkmeng.com.</p>
+            <p>There is currently no API limit, though if you are going to use the API heavily, please contact us first - viewer
+                <script>document.write("@");</script>
+                <noscript>[a t ]</noscript>jeffkmeng.com.</p>
             <h2>Getting Started</h2>
-            All file types utilize the same url, referred to as an <b>open URL</b>:
+            All file types utilize the same url, referred to as an
+            <b>open URL</b>:
             <div class="card">
-                <p>https://viewer.jeffkmeng.com/open?parametershere</p>
+                <div class="card-body">
+                    <p>https://viewer.jeffkmeng.com/open?parametershere</p>
+                </div>
             </div>
-            The open URL(above) is the base of the path you will redirect to, regardless of parameters, but this is most likely not going to be the URL your users see. While our links for each
-            individual video type may change at any time, our open url will (most likely) always be supported.
-            All URL's have base and type-specific file parameters. Base file parameters apply to all file types, while type-specific parameters apply only to a certain data type.
-            There are required base and type-specific file parameters, as well as optional parameters for both.
+            The open URL(above) is the base of the path you will redirect to, regardless of parameters, but this is most likely not going
+            to be the URL your users see. While our links for each individual video type may change at any time, our open
+            url will (most likely) always be supported. All URL's have base and type-specific file parameters. Base file
+            parameters apply to all file types, while type-specific parameters apply only to a certain data type. There are
+            required base and type-specific file parameters, as well as optional parameters for both.
+            <h1>File Types</h1>
             <a name="video"></a>
             <h2>Video</h2>
-            <b>Supports:</b>
-                <ul>
-                    <li><code>video/mp4</code></li>
-                    <li><code>video/webm</code></li>
-                    <li>Youtube links</li>
-                    <li>Vimeo links</li>
-                </ul>
-            <b>Url Parameters:</b>
+            <p class="text-muted">Mode:
+                <code>video</code>
+            </p>
+            
+            <b>Supported Video Types:</b>
+            <ul>
+                <li>
+                    <code>video/mp4</code>
+                </li>
+                <li>
+                    <code>video/webm</code>
+                </li>
+                <li>
+                    <code>YouTube</code>
+                </li>
+                <li>
+                    <code>Vimeo</code>
+                </li>
+            </ul>
+
+            <br>
+            <b>Video Specific Url Parameters:</b>
             <!-- table here support caption, backup video link, etc. -->
+            <table class="table table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Accepted Types(after parsing)</th>
+                    <th>Default</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <code>url</code>
+                        </td>
+                        <td>The URL of the video (of a supported video type) file to play.</td>
+                        <td>String</td>
+                        <td>Required</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>type</code>
+                        </td>
+                        <td>The media type of the video. It must exactly match a supported filetype above.
+                        </td>
+                        <td>String.</td>
+                        <td>Required</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>location</code>
+                        </td>
+                        <td>Optional metadata for the location of the video. If the value is false, it is not displayed. Otherwise,
+                            it is displayed with the website of the file automatically appended.</td>
+                        <td>String or boolean(value of
+                            <code>false</code> only).</td>
+                        <td>Location is not displayed(<code>""</code> <i>and</i> the website of the file is not appended)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>altTracks</code>
+                        </td>
+                        <td>Alternative video URL and types. If either the <code>url</code> or <code>type</code> parameters
+                            are omitted or fail, then the first(0th) object 
+                            inside the array's url and type keys will be used. If those fail, then the next element's keys will 
+                            be used, and so on until there are no more elements.</td>
+                        <td>Array of objects. Each object must have <code>url</code> and <code>type</code>
+                             keys with values that follow the corresponding parameter above <!--(If only one alt 
+                             track is provided it must still be inside the array, <b>NOT</b> as just an object) -->.</td>
+                        <td><code>[]</code></td>
+                    </tr>
+
+                </tbody>
+            </table>
             <p>
                 use video type youtube for youtube files
             </p>
-            
+
 
 
 
@@ -109,7 +195,7 @@
     </div>
     <script src="/js/jquery.min.js"></script>
 
-    <script src="/js/bootstrap.combined.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/prism/prism.js"></script>
     <script>
         Prism.plugins.autoloader.languages_path = '/prism/components/';

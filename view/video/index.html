@@ -107,7 +107,7 @@
 
 		var data;
 		if (getQuery("d")) {
-			data = JSON.parse(decodeURIComponent(getQuery("d")));
+			data = JSON.parse(btoa(decodeURIComponent(getQuery("d"))));
 		} else {
 			//if no data parameter is provided, we assume data is added in the form o a URL search parameter.
 			var search = location.search.substring(1);
@@ -168,15 +168,22 @@
 			var player = plyr.setup($("#video-main"), {
 				iconUrl: "/svg/plyr.svg"
 			})[0];
+			if (!title) {
+				title = "Untitled Video";
+				//TODO: Get title from video file itself
+			}
 			if (data.title) {
 				$("#title").text(data.title);
 			}
 			if (data.location) {
-				$("#location").text(data.location);
+				$("#location").text(data.location + " - example.com");
+				//TODO: get the url of the video file and strip out everything but 
+				//the domain where the example.com is palaceholding right now.
 			}
+			//TODO: subtitles
 			player.source({
 				type: 'video',
-				title: data.filename,
+				title: data.title,
 				sources: [{
 					src: data.url,
 					type: data.type
