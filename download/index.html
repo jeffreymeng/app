@@ -116,9 +116,7 @@
             if (search) {
                 data = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
             } else {
-                data = {
-                    mode: "preview"
-                }
+                data = {};
             }
         }
 
@@ -137,6 +135,9 @@
         if (data.downloadurl) {
             $("#download").attr("href", data.downloadurl);
         }
+        $("#download").click(function() {
+
+        });
         if (data.title) {
             $(".title").text(data.title);
         }
