@@ -123,8 +123,12 @@
         // loop through the object and change whitespace only/no charcter properties to undefined
 
         for (var key in data) {
-            if (data.hasOwnProperty(key) && ((data[key].match(/^\s*$/g)) || data[key] == null)) {
-                delete data[key];//remove the element
+            if (data.hasOwnProperty(key)) {
+                if ((data[key].match(/^\s*$/g)) || data[key] == null) {
+                    delete data[key];//remove the element
+                } else {
+                    data[key] = decodeURIComponent(data[key]);
+                }
 
             }
         }
@@ -135,7 +139,7 @@
         if (data.downloadurl) {
             $("#download").attr("href", data.downloadurl);
         }
-        $("#download").click(function() {
+        $("#download").click(function () {
 
         });
         if (data.title) {
