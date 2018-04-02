@@ -127,7 +127,8 @@
                 if ((data[key].match(/^\s*$/g)) || data[key] == null) {
                     delete data[key];//remove the element
                 } else {
-                    data[key] = decodeURIComponent(data[key]);
+                    //data[key] = decodeURIComponent(data[key]);
+                    //this should be done above
                 }
 
             }
