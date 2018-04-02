@@ -111,7 +111,8 @@
         if (getQuery("d")) {
             data = JSON.parse(atob(decodeURIComponent(getQuery("d"))));
         } else {
-            //if no data parameter is provided, we assume data is added in the form o a URL search parameter.
+            //https://stackoverflow.com/a/8649003/5511561
+            //if no data parameter is provided, we assume data is added in the form to a URL search parameter.
             var search = location.search.substring(1);
             if (search) {
                 data = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
