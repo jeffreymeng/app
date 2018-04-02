@@ -111,11 +111,11 @@
         if (getQuery("d")) {
             data = JSON.parse(atob(decodeURIComponent(getQuery("d"))));
         } else {
-            //https://stackoverflow.com/a/8649003/5511561
+            //https://stackoverflow.com/a/8649003/5511561 except we remove the decodeURI part and do decodeURIComponent below.
             //if no data parameter is provided, we assume data is added in the form to a URL search parameter.
             var search = location.search.substring(1);
             if (search) {
-                data = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
+                data = JSON.parse('{"' + search.replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
             } else {
                 data = {};
             }
@@ -128,8 +128,7 @@
                 if ((data[key].match(/^\s*$/g)) || data[key] == null) {
                     delete data[key];//remove the element
                 } else {
-                    //data[key] = decodeURIComponent(data[key]);
-                    //this should be done above
+                    data[key] = decodeURIComponent(data[key]);
                 }
 
             }
