@@ -108,29 +108,8 @@
 		/* global plyr getQuery */
 
 
-		var data;
-		if (getQuery("d")) {
-			data = JSON.parse(atob(decodeURIComponent(getQuery("d"))));
-		} else {
-			//if no data parameter is provided, we assume data is added in the form o a URL search parameter.
-			var search = location.search.substring(1);
-			if (search) {
-				data = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
-			} else {
-				data = {
-					mode: "preview"
-				}
-			}
-		}
-
-		// loop through the object and change whitespace only/no charcter properties to undefined
-
-		for (var key in data) {
-			if (data.hasOwnProperty(key) && ((data[key].match(/^\s*$/g)) || data[key] == null)) {
-				delete data[key];//remove the element
-
-			}
-		}
+		var data = getData();
+		
 		if (data.mode == undefined) {
 			data.mode = "preview";
 		}
